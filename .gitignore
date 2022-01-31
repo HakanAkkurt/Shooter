@@ -13,4 +13,5 @@ Saved
 *.xcodeproj
 *.xcworkspace
 /Content/ParagonLtBelica
-/Content
+/Content/Maps
+/Content/FactoryMap
