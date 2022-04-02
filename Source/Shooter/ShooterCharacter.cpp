@@ -403,19 +403,19 @@ void AShooterCharacter::TraceForItems()
 		TraceUnderCrosshairs(ItemTraceResult, HitLocation);
 		if (ItemTraceResult.bBlockingHit) {
 
-			AItem* HitItem = Cast<AItem>(ItemTraceResult.Actor);
+			TraceHitItem = Cast<AItem>(ItemTraceResult.Actor);
 
-			if (HitItem && HitItem->GetPickupWidget()) {
+			if (TraceHitItem && TraceHitItem->GetPickupWidget()) {
 
 				// Show Item's Pickup Widget
-				HitItem->GetPickupWidget()->SetVisibility(true);
+				TraceHitItem->GetPickupWidget()->SetVisibility(true);
 
 			}
 
 			// We hit an AITem last frame
 			if (TraceHitItemLastFrame) {
 
-				if (HitItem != TraceHitItemLastFrame) {
+				if (TraceHitItem != TraceHitItemLastFrame) {
 
 					// We are hitting a different AItem this frame from last frame or AItem is null
 					TraceHitItemLastFrame->GetPickupWidget()->SetVisibility(false);
@@ -423,8 +423,8 @@ void AShooterCharacter::TraceForItems()
 				}
 			}
 
-			// Store a reference to HitItem for next frame
-			TraceHitItemLastFrame = HitItem;
+			// Store a reference to TraceHitItem for next frame
+			TraceHitItemLastFrame = TraceHitItem;
 
 		}
 	}
@@ -452,11 +452,6 @@ void AShooterCharacter::EquipWeapon(AWeapon* WeaponToEquip)
 {
 	if (WeaponToEquip) {
 
-		// Set AreaSphere to ignore all Collision Channels
-		WeaponToEquip->GetAreaSphere()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-		// Set CollisionBox to ignore all Collision Channels
-		WeaponToEquip->GetCollisionBox()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-
 		// Get the hand socket
 		const USkeletalMeshSocket* HandSocket = GetMesh()->GetSocketByName(FName("RightHandSocket"));
 
@@ -468,7 +463,41 @@ void AShooterCharacter::EquipWeapon(AWeapon* WeaponToEquip)
 
 		// Set EquippedWeapon to the newly spawned Weapon
 		EquippedWeapon = WeaponToEquip;
+		EquippedWeapon->SetItemState(EItemState::EIS_Equipped);
 	}
+}
+
+void AShooterCharacter::DropWeapon()
+{
+	if (EquippedWeapon) {
+
+		FDetachmentTransformRules DetachmentTransformRules(EDetachmentRule::KeepWorld, true);
+		EquippedWeapon->GetItemMesh()->DetachFromComponent(DetachmentTransformRules);
+
+		EquippedWeapon->SetItemState(EItemState::EIS_Falling);
+		EquippedWeapon->ThrowWeapon();
+	}
+}
+
+void AShooterCharacter::SelectButtonPressed()
+{
+	if (TraceHitItem) {
+
+		auto TraceHitWeapon = Cast<AWeapon>(TraceHitItem);
+		SwapWeapon(TraceHitWeapon);
+	}
+}
+
+void AShooterCharacter::SelectButtonReleased()
+{
+}
+
+void AShooterCharacter::SwapWeapon(AWeapon* WeaponToSwap)
+{
+	DropWeapon();
+	EquipWeapon(WeaponToSwap);
+	TraceHitItem = nullptr;
+	TraceHitItemLastFrame = nullptr;
 }
 
 // Called every frame
@@ -511,6 +540,9 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAction("AimingButton", IE_Pressed, this, &AShooterCharacter::AimingButtonPressed);
 	PlayerInputComponent->BindAction("AimingButton", IE_Released, this, &AShooterCharacter::AimingButtonReleased);
+
+	PlayerInputComponent->BindAction("Select", IE_Pressed, this, &AShooterCharacter::SelectButtonPressed);
+	PlayerInputComponent->BindAction("Select", IE_Released, this, &AShooterCharacter::SelectButtonReleased);
 }
 
 float AShooterCharacter::GetCrosshairSpreadMultiplier() const

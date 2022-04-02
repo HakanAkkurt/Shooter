@@ -83,6 +83,16 @@ protected:
 	// Takes a weapon and attaches it to the mesh
 	void EquipWeapon(AWeapon* WeaponToEquip);
 
+	// Detach weapon and let it fall to the ground
+	void DropWeapon();
+
+	void SelectButtonPressed();
+
+	void SelectButtonReleased();
+
+	// Drops currentyl equipped Weapon and equips TraceHitItem
+	void SwapWeapon(AWeapon* WeaponToSwap);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -225,6 +235,10 @@ private:
 	// Set this in Blueprints for the default Weapon class
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AWeapon> DefaultWeaponClass;
+
+	// The Item currently hit by our trace in TraceForItems (could be null)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	AItem* TraceHitItem;
 
 	float ShootTimeDuration;
 	bool bFiringBullet;
