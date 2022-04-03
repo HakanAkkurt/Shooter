@@ -240,6 +240,14 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	AItem* TraceHitItem;
 
+	// Distance outward from the camera for the interp destination
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
+	float CameraInterpDistance;
+
+	// Distance upward from the camera for the interp destination
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
+	float CameraInterpElevation;
+
 	float ShootTimeDuration;
 	bool bFiringBullet;
 	FTimerHandle CrosshairShootTimer;
@@ -260,4 +268,8 @@ public:
 
 	// Adds/substracts to/from OverlappedItemCount and updates bShouldTraceForItems
 	void IncrementOverlappedItemCount(int8 Amount);
+
+	FVector GetCameraInterpLocation();
+
+	void GetPickupItem(AItem* Item);
 };
