@@ -63,7 +63,7 @@ AShooterCharacter::AShooterCharacter() :
 	// Combat variables
 	CombatState(ECombatState::ECS_Unoccupied)
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this character to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Create a camera boom (pulls in towards the character if there is a collision)
