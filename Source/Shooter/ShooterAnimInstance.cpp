@@ -34,6 +34,7 @@ void UShooterAnimInstance::UpdateAnimationPropeties(float DeltaTime)
 
 	if (ShooterCharacter) {
 
+		bCrouching = ShooterCharacter->GetCrouching();
 		bReloading = ShooterCharacter->GetCombatState() == ECombatState::ECS_Reloading;
 
 		// Get the lateral speed of the character from velocity
