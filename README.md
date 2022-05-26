@@ -4,9 +4,11 @@ Developed with Unreal Engine 4
 
 Assets from UE Market Place:
 
-Paragon: Lt. Belica
+- Paragon: Lt. Belica
 
-Factory Environment Collection
+- Factory Environment Collection
+
+- FPS Weapon Bundle
 
 
 <p align="center">
