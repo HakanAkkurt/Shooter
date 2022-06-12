@@ -496,11 +496,6 @@ void AShooterCharacter::SelectButtonPressed()
 	if (TraceHitItem) {
 
 		TraceHitItem->StartItemCurve(this);
-
-		if (TraceHitItem->GetPickupSound()) {
-
-			UGameplayStatics::PlaySound2D(this, TraceHitItem->GetPickupSound());
-		}
 	}
 }
 
@@ -815,7 +810,7 @@ void AShooterCharacter::FinishReloading()
 		}
 		else {
 
-			// fill the magazine
+			// Fill the magazine
 			EquippedWeapon->ReloadAmmo(MagEmptySpace);
 			CarriedAmmo -= MagEmptySpace;
 			AmmoMap.Add(AmmoType, CarriedAmmo);

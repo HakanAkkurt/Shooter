@@ -7,6 +7,8 @@
 #include "Components/SphereComponent.h"
 #include "ShooterCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 AItem::AItem() :
@@ -304,6 +306,11 @@ void AItem::StartItemCurve(AShooterCharacter* Char)
 {
 	// Store a handle to the Character
 	Character = Char;
+
+	if (PickupSound) {
+
+		UGameplayStatics::PlaySound2D(this, PickupSound);
+	}
 
 	// Store initial location of the item
 	ItemInterpStartLocation = GetActorLocation();
