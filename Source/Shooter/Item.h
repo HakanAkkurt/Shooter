@@ -77,9 +77,14 @@ protected:
 	// Get interp location based on the item type
 	FVector GetInterpLocation();
 
+	void PlayPickupSound();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// Called in AShooterChracter::GetPickupItem
+	void PlayEquipSound();
 
 private:
 	// Skeletal Mesh for the item
