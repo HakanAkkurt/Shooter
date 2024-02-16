@@ -1,6 +1,6 @@
 # Shooter
 
-Developed with Unreal Engine 5
+A Shooter Game localized in Jerusalem (Palestine)
 
 Assets from UE Market Place:
 
@@ -23,6 +23,16 @@ Assets from UE Market Place:
 - The Bazaar
 
 - Modular Military Operation Urban Training Environment - Arabian Pack
+
+- Vehicle Variety Pack
+
+- LUV-3151 (East)
+
+- Command 9S552 (East)
+
+- MRAP Oshkosh (West)
+
+- Tank T72B (East)
 
 - "Dome of the rock 3D model" (https://skfb.ly/oOPLr) by fadla
   is licensed under Creative Commons Attribution-NoDerivs (http://creativecommons.org/licenses/by-nd/4.0/).
@@ -50,6 +60,10 @@ Assets from UE Market Place:
 
 <p align="center">
   <img src="https://github.com/HakanAkkurt/Shooter/blob/master/Screenshots/Screenshot4.jpg" width="1800" title="Shooter">
+</p>
+
+<p align="center">
+  <img src="https://github.com/HakanAkkurt/Shooter/blob/master/Screenshots/Screenshot5.jpg" width="1800" title="Shooter">
 </p>
 
 You can see the gameplay on YouTube:
