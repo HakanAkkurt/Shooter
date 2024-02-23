@@ -1,6 +1,6 @@
 # Shooter
 
-A Shooter Game localized in Jerusalem (Palestine)
+Shooter Al Aqsa Palestine 
 
 <p align="center">
   <img src="https://github.com/HakanAkkurt/Shooter/blob/master/Screenshots/Screenshot1.jpg" width="1800" title="Shooter">
@@ -25,8 +25,8 @@ A Shooter Game localized in Jerusalem (Palestine)
 You can see the gameplay on YouTube:
 
 <br>
-<a href="https://www.youtube.com/watch?v=dJbCNblyNWk" target="_blank">
-<img src="http://img.youtube.com/vi/dJbCNblyNWk/0.jpg" alt="Shooter Game Trailer" width="1800" border="10" />
+<a href="https://www.youtube.com/watch?v=hqmRPGxLrK4" target="_blank">
+<img src="http://img.youtube.com/vi/hqmRPGxLrK4/0.jpg" alt="Shooter Al Aqsa Palestine Gameplay Trailer" width="1800" border="10" />
 </a>
 
 Assets from UE Market Place:
